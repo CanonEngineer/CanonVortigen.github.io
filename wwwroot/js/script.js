@@ -189,3 +189,22 @@ window.onclick = (e) => {
         modal.style.display = "none";
     }
 };
+
+/* ==========================================
+   BLOG DINÂMICO (MEDIUM STYLE)
+========================================== */
+
+document.querySelectorAll(".blog-post").forEach(post => {
+    post.addEventListener("click", () => {
+
+        const title = post.getAttribute("data-title");
+        const content = post.getAttribute("data-content");
+
+        document.getElementById("modalBody").innerHTML = `
+            <h2 style="margin-bottom:15px;color:#2563eb;">${title}</h2>
+            <p style="line-height:1.8;color:#cbd5e1;">${content}</p>
+        `;
+
+        document.getElementById("modal").style.display = "flex";
+    });
+});
