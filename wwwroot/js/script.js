@@ -139,3 +139,26 @@ toggle.addEventListener("click", () => {
             ? "☀️"
             : "🌙";
 });
+
+window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
+    loader.style.opacity = "0";
+
+    setTimeout(() => loader.remove(), 600);
+});
+
+const counters = document.querySelectorAll(".stat-card h3");
+
+counters.forEach(counter => {
+    const update = () => {
+        const target = +counter.innerText.replace("+", "");
+        let count = +counter.innerText.replace("+", "");
+
+        if (count < target) {
+            counter.innerText = (count + 1) + "+";
+            setTimeout(update, 30);
+        }
+    };
+
+    update();
+});
