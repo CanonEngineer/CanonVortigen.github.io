@@ -128,3 +128,14 @@ if (title) {
 
 console.log("%cAlessandro Canon Portfolio Loaded",
     "color:#2563eb;font-size:14px;font-weight:bold;");
+
+const toggle = document.getElementById("themeToggle");
+
+toggle.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+
+    toggle.textContent =
+        document.body.classList.contains("light")
+            ? "☀️"
+            : "🌙";
+});
