@@ -1154,3 +1154,22 @@ body.light {
     color: var(--text-secondary);
     font-size: .95rem;
 }
+
+/* outras regras acima... */
+
+/* ===========================
+   CORREÇÃO RESPONSIVO SIDEBAR
+=========================== */
+
+@media (max-width: 768px) {
+
+    #sideNav {
+        position: relative !important;
+        width: 100%;
+        height: auto;
+    }
+
+    .container-fluid {
+        margin-left: 0 !important;
+    }
+}
