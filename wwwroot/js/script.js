@@ -168,3 +168,24 @@ fetch("https://api.countapi.xyz/hit/canon-portfolio/visits")
   .then(data => {
       console.log("Visitas:", data.value);
   });
+
+const modal = document.getElementById("modal");
+const modalBody = document.getElementById("modalBody");
+const closeModal = document.getElementById("closeModal");
+
+document.querySelectorAll("#projetos .card").forEach(card => {
+    card.addEventListener("click", () => {
+        modal.style.display = "flex";
+        modalBody.innerHTML = card.innerHTML;
+    });
+});
+
+closeModal.onclick = () => {
+    modal.style.display = "none";
+};
+
+window.onclick = (e) => {
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+};
