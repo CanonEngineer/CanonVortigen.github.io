@@ -1165,19 +1165,6 @@ body.light {
 
     #sideNav {
         position: relative !important;
-        width: 100%;
-        height: auto;
-    }
-
-    .container-fluid {
-        margin-left: 0 !important;
-    }
-}
-
-@media (max-width: 768px) {
-
-    #sideNav {
-        position: relative !important;
         width: 100% !important;
         height: auto !important;
     }
