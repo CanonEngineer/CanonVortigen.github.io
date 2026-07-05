@@ -20,7 +20,7 @@ Building innovative solutions in networking, automation, and cybersecurity.
 
 ## 🚀 About the Project
 
-**CanonVortigen.github.io** is my personal portfolio and professional showcase, developed to centralize my projects, technical experiences, and studies in:
+**CanonEngineer.github.io** is my personal portfolio and professional showcase, developed to centralize my projects, technical experiences, and studies in:
 
 * 🌐 Computer Networks
 * 🔒 Cybersecurity
@@ -75,7 +75,7 @@ CanonVortigen.github.io/
 
 Access the live website:
 
-👉 **https://canonvortigen.github.io**
+👉 **https://canonengineer.github.io**
 
 ---
 
@@ -118,8 +118,8 @@ This project aims to:
 
 Network Analyst | Developer | Cybersecurity Enthusiast
 
-* GitHub: https://github.com/CanonVortigen
-* Portfolio: https://canonvortigen.github.io
+* GitHub: https://github.com/CanonEngineer
+* Portfolio: https://canonengineer.github.io
 
 ---
 
