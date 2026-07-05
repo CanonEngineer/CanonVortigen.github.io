@@ -1173,3 +1173,27 @@ body.light {
         margin-left: 0 !important;
     }
 }
+
+@media (max-width: 768px) {
+
+    #sideNav {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    body,
+    .container-fluid {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    section {
+        width: 100%;
+        padding: 60px 20px;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+}
