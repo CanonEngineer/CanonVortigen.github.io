@@ -130,15 +130,37 @@ console.log("%cAlessandro Canon Portfolio Loaded",
     "color:#2563eb;font-size:14px;font-weight:bold;");
 
 const toggle = document.getElementById("themeToggle");
+const navToggle = document.getElementById("navToggle");
+const navMenuLinks = document.querySelectorAll(".nav-menu a");
 
-toggle.addEventListener("click", () => {
-    document.body.classList.toggle("light");
+if (toggle) {
+    toggle.addEventListener("click", () => {
+        document.body.classList.toggle("light");
 
-    toggle.textContent =
-        document.body.classList.contains("light")
-            ? "☀️"
-            : "🌙";
-});
+        toggle.textContent =
+            document.body.classList.contains("light")
+                ? "☀️"
+                : "🌙";
+    });
+}
+
+if (navToggle && navbar) {
+    navToggle.addEventListener("click", () => {
+        const isOpen = navbar.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        navToggle.innerHTML = isOpen
+            ? '<i class="fas fa-times" aria-hidden="true"></i>'
+            : '<i class="fas fa-bars" aria-hidden="true"></i>';
+    });
+
+    navMenuLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            navbar.classList.remove("open");
+            navToggle.setAttribute("aria-expanded", "false");
+            navToggle.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+        });
+    });
+}
 
 window.addEventListener("load", () => {
     const loader = document.getElementById("loader");

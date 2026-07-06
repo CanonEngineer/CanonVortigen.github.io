@@ -195,26 +195,43 @@ img {
     font-weight: 800;
     color: var(--text);
     letter-spacing: 1px;
+    flex-shrink: 0;
 }
 
 .logo span {
     color: var(--primary);
 }
 
-.navbar ul {
+.navbar-actions {
     display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.nav-toggle {
+    display: none;
+}
+
+.navbar ul,
+.navbar .nav-menu {
+    display: flex;
+    flex: 1;
+    justify-content: center;
     gap: 35px;
     list-style: none;
 }
 
-.navbar ul li a {
+.navbar ul li a,
+.navbar .nav-menu li a {
     color: var(--text-secondary);
     font-size: .95rem;
     font-weight: 600;
     transition: var(--transition);
 }
 
-.navbar ul li a:hover {
+.navbar ul li a:hover,
+.navbar .nav-menu li a:hover {
     color: var(--primary);
 }
 
@@ -225,12 +242,14 @@ img {
 .hero {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 160px 30px 120px;
 }
 
 .hero-content {
+    width: 100%;
     max-width: 1000px;
     text-align: center;
 }
@@ -867,11 +886,13 @@ footer {
         padding: 20px 5%;
     }
 
-    .navbar ul {
+    .navbar ul,
+    .navbar .nav-menu {
         gap: 18px;
     }
 
-    .navbar ul li a {
+    .navbar ul li a,
+    .navbar .nav-menu li a {
         font-size: .90rem;
     }
 }
@@ -914,46 +935,127 @@ footer {
 
 @media (max-width: 768px) {
 
+    html {
+        scroll-padding-top: 72px;
+    }
+
     .navbar {
-        position: relative;
-        flex-direction: column;
-        padding: 25px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            "logo actions"
+            "menu menu";
+        align-items: center;
+        padding: 12px 16px;
+        gap: 0;
     }
 
     .logo {
-        margin-bottom: 20px;
+        grid-area: logo;
+        margin-bottom: 0;
+        font-size: 1.25rem;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
-    .navbar ul {
-        flex-wrap: wrap;
+    .navbar-actions {
+        grid-area: actions;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+    }
+
+    .nav-toggle {
+        display: flex;
         justify-content: center;
-        gap: 15px;
+        align-items: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, .08);
+        border: 1px solid rgba(255, 255, 255, .1);
+        color: #fff;
+        font-size: 1.15rem;
+        cursor: pointer;
+    }
+
+    .navbar ul,
+    .navbar .nav-menu {
+        grid-area: menu;
+        display: none;
+        flex: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 4px;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .navbar.open ul,
+    .navbar.open .nav-menu {
+        display: flex;
+    }
+
+    .navbar .nav-menu li a {
+        display: block;
+        padding: 10px 12px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .navbar .nav-menu li a:hover {
+        background: rgba(37, 99, 235, .15);
     }
 
     .hero {
-        min-height: auto;
-        padding-top: 70px;
+        min-height: 100vh;
+        width: 100%;
+        padding: 96px 20px 80px;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
     }
 
     .hero h1 {
-        font-size: 2.7rem;
+        font-size: clamp(1.85rem, 8vw, 2.7rem);
+        overflow-wrap: anywhere;
     }
 
     .hero h2 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .hero-description {
         font-size: 1rem;
+        padding: 0 4px;
     }
 
     .profile {
         width: 200px;
         height: 200px;
+        margin-bottom: 28px;
+    }
+
+    .current-badge {
+        font-size: .9rem;
+        padding: 10px 18px;
+        text-align: center;
     }
 
     .socials {
         flex-wrap: wrap;
+        gap: 14px;
     }
 
     .btn-download {
@@ -991,8 +1093,16 @@ footer {
 
 @media (max-width: 480px) {
 
+    html {
+        scroll-padding-top: 68px;
+    }
+
+    .hero {
+        padding: 88px 16px 70px;
+    }
+
     .hero h1 {
-        font-size: 2.2rem;
+        font-size: clamp(1.65rem, 7.5vw, 2.2rem);
     }
 
     .profile {
@@ -1155,76 +1265,3 @@ body.light {
     font-size: .95rem;
 }
 
-/* outras regras acima... */
-
-/* ===========================
-   CORREÇÃO RESPONSIVO SIDEBAR
-=========================== */
-
-@media (max-width: 768px) {
-
-    #sideNav {
-        position: relative !important;
-        width: 100% !important;
-        height: auto !important;
-    }
-
-    body,
-    .container-fluid {
-        margin-left: 0 !important;
-        padding-left: 0 !important;
-    }
-
-    section {
-        width: 100%;
-        padding: 60px 20px;
-    }
-
-    body {
-        overflow-x: hidden;
-    }
-}
-
-@media (max-width: 768px) {
-
-    #sideNav {
-        position: relative !important;
-        width: 100% !important;
-        height: auto !important;
-    }
-
-    body {
-        margin: 0 !important;
-        padding: 0 !important;
-        overflow-x: hidden !important;
-    }
-
-    .container-fluid,
-    .container-fluid.p-0 {
-        margin-left: 0 !important;
-        padding-left: 0 !important;
-    }
-
-    section {
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 60px 20px !important;
-    }
-}
-
-#sideNav {
-    position: relative !important;
-    width: 100% !important;
-    height: auto !important;
-}
-
-body {
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow-x: hidden !important;
-}
-
-.container-fluid {
-    margin: 0 !important;
-    padding: 0 !important;
-}
