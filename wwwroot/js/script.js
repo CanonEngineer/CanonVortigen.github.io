@@ -194,39 +194,78 @@ fetch("https://api.countapi.xyz/hit/canon-portfolio/visits")
 const modal = document.getElementById("modal");
 const modalBody = document.getElementById("modalBody");
 const closeModal = document.getElementById("closeModal");
+const cvModal = document.getElementById("cvModal");
+const closeCvModal = document.getElementById("closeCvModal");
+const btnDownloadCV = document.getElementById("btnDownloadCV");
 
-document.querySelectorAll("#projetos .card").forEach(card => {
-    card.addEventListener("click", () => {
-        modal.style.display = "flex";
-        modalBody.innerHTML = card.innerHTML;
+if (modal && modalBody) {
+    document.querySelectorAll("#projetos .card").forEach(card => {
+        card.addEventListener("click", () => {
+            modal.style.display = "flex";
+            modalBody.innerHTML = card.innerHTML;
+        });
     });
-});
+}
 
-closeModal.onclick = () => {
-    modal.style.display = "none";
-};
+if (closeModal && modal) {
+    closeModal.onclick = () => {
+        modal.style.display = "none";
+    };
+}
 
 window.onclick = (e) => {
-    if (e.target === modal) {
+    if (modal && e.target === modal) {
         modal.style.display = "none";
+    }
+    if (cvModal && e.target === cvModal) {
+        cvModal.style.display = "none";
     }
 };
 
 /* ==========================================
-   BLOG DINÂMICO (MEDIUM STYLE)
+   MODAL DOWNLOAD CV
 ========================================== */
 
-document.querySelectorAll(".blog-post").forEach(post => {
-    post.addEventListener("click", () => {
+if (btnDownloadCV && cvModal) {
+    btnDownloadCV.addEventListener("click", () => {
+        cvModal.style.display = "flex";
+    });
+}
 
-        const title = post.getAttribute("data-title");
-        const content = post.getAttribute("data-content");
+if (closeCvModal && cvModal) {
+    closeCvModal.onclick = () => {
+        cvModal.style.display = "none";
+    };
+}
 
-        document.getElementById("modalBody").innerHTML = `
-            <h2 style="margin-bottom:15px;color:#2563eb;">${title}</h2>
-            <p style="line-height:1.8;color:#cbd5e1;">${content}</p>
-        `;
-
-        document.getElementById("modal").style.display = "flex";
+document.querySelectorAll(".cv-download-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        if (cvModal) cvModal.style.display = "none";
     });
 });
+
+/* ==========================================
+   DATA E HORA DINÂMICA
+========================================== */
+
+function updateDateTime() {
+    const now = new Date();
+    const formatted = now.toLocaleString("pt-BR", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+    });
+
+    const capitalized = formatted.charAt(0).toUpperCase() + formatted.slice(1);
+
+    document.querySelectorAll("#datetime, #datetimeFooter, .datetime-display").forEach(el => {
+        el.textContent = capitalized;
+    });
+}
+
+updateDateTime();
+setInterval(updateDateTime, 1000);

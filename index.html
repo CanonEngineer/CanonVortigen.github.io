@@ -9,7 +9,7 @@
 
     <meta
         name="description"
-        content="Portfólio profissional de Alessandro Canon, Analista de Tecnologia da Informação, Engenheiro da Computação, Desenvolvedor e entusiasta em Cybersecurity.">
+        content="Portfólio profissional de Alessandro Canon, Analista de Tecnologia da Informação, Engenheiro da Computação, Desenvolvedor e entusiasta em Segurança da Informação.">
 
     <meta
         name="keywords"
@@ -63,6 +63,7 @@
 
         <ul class="nav-menu">
             <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#blog">Blog</a></li>
             <li><a href="#especialidades">Especialidades</a></li>
             <li><a href="#experiencia">Experiência</a></li>
             <li><a href="#formacao">Formação</a></li>
@@ -73,6 +74,7 @@
         </ul>
 
         <div class="navbar-actions">
+            <span id="datetime" class="datetime-display" aria-live="polite"></span>
             <button id="themeToggle" class="theme-toggle" type="button" aria-label="Alternar tema">
                 🌙
             </button>
@@ -105,7 +107,7 @@
 
         <p class="hero-description">
             Engenheiro da Computação • Desenvolvedor •
-            Cybersecurity Enthusiast • Infraestrutura •
+            Entusiasta em Segurança da Informação • Infraestrutura •
             Redes • Automação • Transformação Digital
         </p>
 
@@ -118,7 +120,7 @@
             </a>
 
             <a
-                href="https://www.linkedin.com/in/alessandro-oliveira-canon-a9099a66"
+                href="https://www.linkedin.com/in/alessandro-oliveira-sebasti%C3%A3o-a9099a66"
                 target="_blank">
                 <i class="fab fa-linkedin"></i>
             </a>
@@ -136,14 +138,14 @@
 
         </div>
 
-        <a
-            href="wwwroot/files/Alessandro_Canon_CV.pdf"
+        <button
+            id="btnDownloadCV"
             class="btn-download"
-            download>
+            type="button">
 
             Download CV
 
-        </a>
+        </button>
 
     </div>
 
@@ -187,27 +189,46 @@
   <div class="grid" id="blogContainer">
 
     <!-- POST 1 -->
-    <div class="card blog-post" data-title="DevOps na prática"
-         data-content="DevOps é a integração entre desenvolvimento e operações, focando em automação, CI/CD e entrega contínua de software.">
+    <a href="blog/devops-na-pratica.html" class="card blog-post">
         <h3>DevOps na prática</h3>
         <p>Introdução ao conceito moderno de pipelines e automação.</p>
-    </div>
+        <span class="blog-read-more">Ler artigo <i class="fas fa-arrow-right"></i></span>
+    </a>
 
     <!-- POST 2 -->
-    <div class="card blog-post"
-         data-title="Segurança em Redes"
-         data-content="A segurança em redes envolve firewall, segmentação, monitoramento e políticas de acesso.">
+    <a href="blog/seguranca-em-redes.html" class="card blog-post">
         <h3>Segurança em Redes</h3>
         <p>Como proteger infraestruturas corporativas.</p>
-    </div>
+        <span class="blog-read-more">Ler artigo <i class="fas fa-arrow-right"></i></span>
+    </a>
 
     <!-- POST 3 -->
-    <div class="card blog-post"
-         data-title="Python no Backend"
-         data-content="Python com Django ou FastAPI permite criar APIs rápidas, seguras e escaláveis.">
+    <a href="blog/python-no-backend.html" class="card blog-post">
         <h3>Python no Backend</h3>
         <p>Construção de APIs modernas e escaláveis.</p>
-    </div>
+        <span class="blog-read-more">Ler artigo <i class="fas fa-arrow-right"></i></span>
+    </a>
+
+    <!-- POST 4 -->
+    <a href="blog/firewall.html" class="card blog-post">
+        <h3>Firewall</h3>
+        <p>Tipos, regras, políticas e proteção de perímetro em profundidade.</p>
+        <span class="blog-read-more">Ler artigo <i class="fas fa-arrow-right"></i></span>
+    </a>
+
+    <!-- POST 5 -->
+    <a href="blog/maquinas-virtuais-proxmox.html" class="card blog-post">
+        <h3>Máquinas Virtuais e Proxmox</h3>
+        <p>Virtualização, containers, clusters e gestão com Proxmox VE.</p>
+        <span class="blog-read-more">Ler artigo <i class="fas fa-arrow-right"></i></span>
+    </a>
+
+    <!-- POST 6 -->
+    <a href="blog/inteligencia-artificial.html" class="card blog-post">
+        <h3>Inteligência Artificial</h3>
+        <p>IA, Machine Learning, LLMs e aplicações práticas em TI.</p>
+        <span class="blog-read-more">Ler artigo <i class="fas fa-arrow-right"></i></span>
+    </a>
 
   </div>
 
@@ -779,7 +800,7 @@
             </a>
 
             <a
-                href="https://www.linkedin.com/in/alessandro-oliveira-canon-a9099a66"
+                href="https://www.linkedin.com/in/alessandro-oliveira-sebasti%C3%A3o-a9099a66"
                 target="_blank"
                 aria-label="LinkedIn">
                 <i class="fab fa-linkedin"></i>
@@ -816,8 +837,10 @@
             Analista de Tecnologia da Informação |
             Engenheiro da Computação |
             Desenvolvedor |
-            Cybersecurity Enthusiast
+            Entusiasta em Segurança da Informação
         </p>
+
+        <p id="datetimeFooter" class="datetime-display" aria-live="polite"></p>
 
         <p>
             © 2026 Alessandro Canon.
@@ -862,6 +885,22 @@ new window.VLibras.Widget(
     <div class="modal-content">
         <span id="closeModal">&times;</span>
         <div id="modalBody"></div>
+    </div>
+</div>
+
+<div id="cvModal" class="modal">
+    <div class="modal-content cv-modal-content">
+        <span id="closeCvModal">&times;</span>
+        <h2>Download do Currículo</h2>
+        <p class="cv-modal-text">Escolha o idioma da versão que deseja baixar:</p>
+        <div class="cv-modal-buttons">
+            <a href="wwwroot/files/Alessandro_Canon_CV_PT.pdf" class="cv-download-btn" download="Alessandro_Canon_CV_PT.pdf">
+                <i class="fas fa-file-pdf"></i> Português
+            </a>
+            <a href="wwwroot/files/Alessandro_Canon_CV_EN.pdf" class="cv-download-btn" download="Alessandro_Canon_CV_EN.pdf">
+                <i class="fas fa-file-pdf"></i> English
+            </a>
+        </div>
     </div>
 </div>
     

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Inteligência Artificial: Machine Learning, Deep Learning, LLMs, aplicações em TI e ética.">
+    <title>Inteligência Artificial | Blog Técnico | Alessandro Canon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="icon" href="../wwwroot/img/canon.png">
+    <link rel="stylesheet" href="../wwwroot/css/style.css">
+    <link rel="stylesheet" href="../wwwroot/css/blog.css">
+</head>
+<body>
+
+<header class="blog-header">
+    <a href="../index.html#blog" class="blog-back"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
+    <div class="blog-hero">
+        <div class="blog-icon"><i class="fas fa-brain"></i></div>
+        <h1>Inteligência Artificial</h1>
+        <p class="blog-meta">
+            <span><i class="far fa-calendar"></i> Atualizado em 2026</span>
+            <span><i class="far fa-clock"></i> 24 min de leitura</span>
+            <span><i class="fas fa-tag"></i> IA • Machine Learning • LLMs</span>
+        </p>
+    </div>
+</header>
+
+<article class="blog-article">
+
+    <div class="article-card">
+        <h2>O que é Inteligência Artificial?</h2>
+        <p>
+            <strong>Inteligência Artificial (IA)</strong> é o campo da ciência da computação dedicado
+            a criar sistemas capazes de realizar tarefas que normalmente exigiriam inteligência humana:
+            reconhecer padrões, tomar decisões, entender linguagem, aprender com experiência e resolver
+            problemas complexos.
+        </p>
+        <div class="article-illustration">
+            <svg viewBox="0 0 520 160" xmlns="http://www.w3.org/2000/svg">
+                <rect x="200" y="50" width="120" height="60" rx="30" fill="#7c3aed" opacity="0.3" stroke="#a855f7" stroke-width="2"/>
+                <text x="260" y="85" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="bold" font-family="Inter">IA</text>
+                <line x1="120" y1="50" x2="200" y2="70" stroke="#64748b" stroke-width="1.5"/>
+                <text x="60" y="45" fill="#94a3b8" font-size="8" font-family="Inter">Machine</text>
+                <text x="55" y="58" fill="#94a3b8" font-size="8" font-family="Inter">Learning</text>
+                <line x1="120" y1="110" x2="200" y2="90" stroke="#64748b" stroke-width="1.5"/>
+                <text x="55" y="115" fill="#94a3b8" font-size="8" font-family="Inter">Deep Learning</text>
+                <line x1="400" y1="50" x2="320" y2="70" stroke="#64748b" stroke-width="1.5"/>
+                <text x="420" y="45" fill="#94a3b8" font-size="8" font-family="Inter">NLP /</text>
+                <text x="415" y="58" fill="#94a3b8" font-size="8" font-family="Inter">LLMs</text>
+                <line x1="400" y1="110" x2="320" y2="90" stroke="#64748b" stroke-width="1.5"/>
+                <text x="410" y="115" fill="#94a3b8" font-size="8" font-family="Inter">Visão Comp.</text>
+                <text x="260" y="145" text-anchor="middle" fill="#64748b" font-size="9" font-family="Inter">IA como campo abrangente de subdisciplinas</text>
+            </svg>
+        </div>
+        <div class="info-box">
+            <p><strong>IA ≠ Robôs:</strong> A maioria das aplicações de IA hoje são software — recomendações da Netflix, filtros de spam, assistentes virtuais e diagnósticos médicos.</p>
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>História e evolução</h2>
+        <div class="diagram-flow">
+            <div class="diagram-step">1950<br><small>Turing</small></div>
+            <span class="diagram-arrow">→</span>
+            <div class="diagram-step">1980<br><small>Expert Systems</small></div>
+            <span class="diagram-arrow">→</span>
+            <div class="diagram-step">2012<br><small>Deep Learning</small></div>
+            <span class="diagram-arrow">→</span>
+            <div class="diagram-step">2017<br><small>Transformers</small></div>
+            <span class="diagram-arrow">→</span>
+            <div class="diagram-step">2022+<br><small>LLMs / GPT</small></div>
+        </div>
+        <ul>
+            <li><strong>1950:</strong> Alan Turing propõe o "Teste de Turing" — máquina pode pensar?</li>
+            <li><strong>1956:</strong> Conferência de Dartmouth — termo "Inteligência Artificial" nasce.</li>
+            <li><strong>1997:</strong> Deep Blue (IBM) vence campeão de xadrez Garry Kasparov.</li>
+            <li><strong>2012:</strong> AlexNet revoluciona visão computacional com redes neurais profundas.</li>
+            <li><strong>2017:</strong> Paper "Attention Is All You Need" — arquitetura Transformer.</li>
+            <li><strong>2022:</strong> ChatGPT populariza LLMs para o público geral.</li>
+        </ul>
+    </div>
+
+    <div class="article-card">
+        <h2>Machine Learning — Aprendizado de Máquina</h2>
+        <p>
+            <strong>Machine Learning (ML)</strong> é o subcampo da IA onde algoritmos aprendem padrões
+            a partir de dados, sem serem explicitamente programados para cada regra.
+        </p>
+
+        <div class="threat-grid">
+            <div class="threat-card">
+                <div class="threat-icon blue"><i class="fas fa-tags"></i></div>
+                <h4>Supervisionado</h4>
+                <p>Dados rotulados (input + resposta correta). Classificação (spam/não-spam) e regressão (prever preços).</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon green"><i class="fas fa-puzzle-piece"></i></div>
+                <h4>Não Supervisionado</h4>
+                <p>Dados sem rótulos. O algoritmo encontra padrões sozinho — clustering, detecção de anomalias.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon purple"><i class="fas fa-gamepad"></i></div>
+                <h4>Reforço (RL)</h4>
+                <p>Agente aprende por tentativa e erro com recompensas. Usado em jogos, robótica e otimização.</p>
+            </div>
+        </div>
+
+        <div class="article-illustration">
+            <p style="margin-bottom:12px;color:var(--text-secondary);font-size:0.9rem;">Ciclo de um projeto de Machine Learning</p>
+            <div class="diagram-flow">
+                <div class="diagram-step"><i class="fas fa-database"></i><br>Dados</div>
+                <span class="diagram-arrow">→</span>
+                <div class="diagram-step"><i class="fas fa-broom"></i><br>Preparação</div>
+                <span class="diagram-arrow">→</span>
+                <div class="diagram-step"><i class="fas fa-flask"></i><br>Treino</div>
+                <span class="diagram-arrow">→</span>
+                <div class="diagram-step"><i class="fas fa-chart-line"></i><br>Avaliação</div>
+                <span class="diagram-arrow">→</span>
+                <div class="diagram-step"><i class="fas fa-rocket"></i><br>Deploy</div>
+            </div>
+        </div>
+
+        <h3>Algoritmos populares</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr><th>Algoritmo</th><th>Tipo</th><th>Uso comum</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Regressão Linear</td><td>Supervisionado</td><td>Previsão de valores contínuos</td></tr>
+                <tr><td>Random Forest</td><td>Supervisionado</td><td>Classificação robusta</td></tr>
+                <tr><td>SVM</td><td>Supervisionado</td><td>Classificação com margens</td></tr>
+                <tr><td>K-Means</td><td>Não supervisionado</td><td>Agrupamento de clientes</td></tr>
+                <tr><td>Redes Neurais</td><td>Ambos</td><td>Imagens, texto, áudio</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="article-card">
+        <h2>Deep Learning — Redes Neurais Profundas</h2>
+        <p>
+            <strong>Deep Learning</strong> usa redes neurais com muitas camadas (daí "profundas") para
+            aprender representações complexas. É o motor por trás da maioria dos avanços recentes em IA.
+        </p>
+        <div class="article-illustration">
+            <svg viewBox="0 0 500 140" xmlns="http://www.w3.org/2000/svg">
+                <text x="30" y="75" fill="#94a3b8" font-size="9" font-family="Inter">Input</text>
+                <circle cx="80" cy="40" r="12" fill="#2563eb" opacity="0.5"/>
+                <circle cx="80" cy="70" r="12" fill="#2563eb" opacity="0.5"/>
+                <circle cx="80" cy="100" r="12" fill="#2563eb" opacity="0.5"/>
+                <circle cx="160" cy="30" r="12" fill="#7c3aed" opacity="0.5"/>
+                <circle cx="160" cy="55" r="12" fill="#7c3aed" opacity="0.5"/>
+                <circle cx="160" cy="80" r="12" fill="#7c3aed" opacity="0.5"/>
+                <circle cx="160" cy="105" r="12" fill="#7c3aed" opacity="0.5"/>
+                <circle cx="240" cy="40" r="12" fill="#7c3aed" opacity="0.5"/>
+                <circle cx="240" cy="70" r="12" fill="#7c3aed" opacity="0.5"/>
+                <circle cx="240" cy="100" r="12" fill="#7c3aed" opacity="0.5"/>
+                <circle cx="320" cy="55" r="12" fill="#7c3aed" opacity="0.5"/>
+                <circle cx="320" cy="85" r="12" fill="#7c3aed" opacity="0.5"/>
+                <circle cx="400" cy="70" r="14" fill="#10b981" opacity="0.6" stroke="#10b981"/>
+                <text x="400" y="74" text-anchor="middle" fill="#f8fafc" font-size="8" font-family="Inter">Out</text>
+                <line x1="92" y1="40" x2="148" y2="30" stroke="#475569" stroke-width="0.8"/>
+                <line x1="92" y1="70" x2="148" y2="55" stroke="#475569" stroke-width="0.8"/>
+                <line x1="92" y1="100" x2="148" y2="105" stroke="#475569" stroke-width="0.8"/>
+                <line x1="172" y1="55" x2="228" y2="70" stroke="#475569" stroke-width="0.8"/>
+                <line x1="252" y1="70" x2="308" y2="70" stroke="#475569" stroke-width="0.8"/>
+                <line x1="332" y1="70" x2="386" y2="70" stroke="#475569" stroke-width="0.8"/>
+                <text x="120" y="130" fill="#64748b" font-size="8" font-family="Inter">Camada 1</text>
+                <text x="200" y="130" fill="#64748b" font-size="8" font-family="Inter">Camada 2</text>
+                <text x="290" y="130" fill="#64748b" font-size="8" font-family="Inter">Camada 3</text>
+            </svg>
+        </div>
+        <h3>Arquiteturas principais</h3>
+        <ul>
+            <li><strong>CNN (Convolutional):</strong> visão computacional — reconhecimento de imagens, OCR, diagnóstico por raio-X.</li>
+            <li><strong>RNN/LSTM:</strong> dados sequenciais — séries temporais, tradução (parcialmente substituídas por Transformers).</li>
+            <li><strong>Transformers:</strong> mecanismo de atenção — base dos LLMs modernos (GPT, BERT, Llama).</li>
+            <li><strong>GANs:</strong> geração de imagens realistas — deepfakes, arte generativa.</li>
+        </ul>
+    </div>
+
+    <div class="article-card">
+        <h2>LLMs — Large Language Models</h2>
+        <p>
+            <strong>LLMs</strong> são modelos de IA treinados em quantidades massivas de texto para
+            entender e gerar linguagem natural. São a tecnologia por trás do ChatGPT, Claude, Gemini
+            e Llama.
+        </p>
+        <div class="article-illustration">
+            <div class="diagram-flow">
+                <div class="diagram-step"><i class="fas fa-book"></i><br>Texto massivo</div>
+                <span class="diagram-arrow">→</span>
+                <div class="diagram-step"><i class="fas fa-microchip"></i><br>Treino GPU</div>
+                <span class="diagram-arrow">→</span>
+                <div class="diagram-step"><i class="fas fa-brain"></i><br>Modelo</div>
+                <span class="diagram-arrow">→</span>
+                <div class="diagram-step"><i class="fas fa-comments"></i><br>Prompt → Resposta</div>
+            </div>
+        </div>
+
+        <h3>Modelos conhecidos</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr><th>Modelo</th><th>Empresa</th><th>Destaque</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>GPT-4 / GPT-4o</td><td>OpenAI</td><td>ChatGPT, multimodal (texto + imagem)</td></tr>
+                <tr><td>Claude</td><td>Anthropic</td><td>Raciocínio, contexto longo (200K tokens)</td></tr>
+                <tr><td>Gemini</td><td>Google</td><td>Integração com ecossistema Google</td></tr>
+                <tr><td>Llama 3</td><td>Meta</td><td>Open-source, roda localmente</td></tr>
+                <tr><td>Mistral</td><td>Mistral AI</td><td>Eficiente, open-source europeu</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Conceitos importantes</h3>
+        <ul>
+            <li><strong>Tokens:</strong> unidades de texto processadas pelo modelo (≈ 0.75 palavra em inglês).</li>
+            <li><strong>Prompt Engineering:</strong> arte de formular instruções para obter melhores respostas.</li>
+            <li><strong>RAG (Retrieval-Augmented Generation):</strong> combina LLM com busca em documentos próprios.</li>
+            <li><strong>Fine-tuning:</strong> retreinar modelo com dados específicos do domínio.</li>
+            <li><strong>Hallucination:</strong> quando o modelo inventa informações falsas com confiança.</li>
+        </ul>
+    </div>
+
+    <div class="article-card">
+        <h2>IA aplicada à TI e infraestrutura</h2>
+        <div class="threat-grid">
+            <div class="threat-card">
+                <div class="threat-icon red"><i class="fas fa-shield-virus"></i></div>
+                <h4>Segurança (AI-SOC)</h4>
+                <p>Detecção de ameaças em tempo real, análise de comportamento anômalo, resposta automatizada a incidentes.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon blue"><i class="fas fa-chart-area"></i></div>
+                <h4>AIOps</h4>
+                <p>Monitoramento inteligente — predição de falhas, correlação de alertas, auto-healing de infraestrutura.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon green"><i class="fas fa-headset"></i></div>
+                <h4>Chatbots de suporte</h4>
+                <p>Atendimento automatizado N1, triagem de chamados, base de conhecimento inteligente.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon purple"><i class="fas fa-code"></i></div>
+                <h4>Code Assistants</h4>
+                <p>GitHub Copilot, Cursor — autocompletar código, revisão, geração de testes e documentação.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon orange"><i class="fas fa-hospital"></i></div>
+                <h4>IA em Saúde</h4>
+                <p>Diagnóstico por imagem, predição de internações, otimização de leitos — crítico em hospitais como HCFMB.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon cyan"><i class="fas fa-network-wired"></i></div>
+                <h4>Redes inteligentes</h4>
+                <p>Otimização de tráfego, detecção de DDoS por ML, configuração automática de QoS.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>Ferramentas e frameworks</h2>
+        <div class="code-block">
+<span class="comment"># Exemplo: classificação com scikit-learn (Python)</span>
+<span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier
+<span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+model = RandomForestClassifier(n_estimators=100)
+model.fit(X_train, y_train)
+accuracy = model.score(X_test, y_test)
+print(f<span class="string">"Acurácia: {accuracy:.2%}"</span>)
+        </div>
+        <table class="comparison-table">
+            <thead>
+                <tr><th>Ferramenta</th><th>Tipo</th><th>Descrição</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>TensorFlow / Keras</td><td>Framework</td><td>Deep Learning do Google, produção</td></tr>
+                <tr><td>PyTorch</td><td>Framework</td><td>Pesquisa e produção, Meta/OpenAI</td></tr>
+                <tr><td>scikit-learn</td><td>Biblioteca</td><td>ML clássico, fácil de usar</td></tr>
+                <tr><td>Hugging Face</td><td>Plataforma</td><td>Modelos pré-treinados, NLP, LLMs</td></tr>
+                <tr><td>Ollama</td><td>Runtime</td><td>Rodar LLMs localmente (Llama, Mistral)</td></tr>
+                <tr><td>LangChain</td><td>Framework</td><td>Orquestração de LLMs + RAG + agents</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="article-card">
+        <h2>Ética, riscos e governança</h2>
+        <p>A IA traz oportunidades enormes, mas também riscos que profissionais de TI devem conhecer:</p>
+        <ul>
+            <li><strong>Viés (Bias):</strong> modelos reproduzem preconceitos dos dados de treino.</li>
+            <li><strong>Privacidade:</strong> dados sensíveis usados no treinamento — LGPD/GDPR.</li>
+            <li><strong>Desemprego tecnológico:</strong> automação de tarefas cognitivas repetitivas.</li>
+            <li><strong>Deepfakes:</strong> vídeos/áudios falsos indistinguíveis do real.</li>
+            <li><strong>Dependência:</strong> decisões críticas sem supervisão humana.</li>
+        </ul>
+        <div class="info-box">
+            <p><strong>IA Responsável:</strong> Transparência, explicabilidade, supervisão humana e auditoria são pilares para uso ético da IA em ambientes corporativos e hospitalares.</p>
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>O futuro da IA</h2>
+        <ul>
+            <li><strong>Agentes autônomos:</strong> IA que executa tarefas complexas em múltiplos passos.</li>
+            <li><strong>IA multimodal:</strong> texto, imagem, áudio e vídeo em um único modelo.</li>
+            <li><strong>IA em edge:</strong> modelos rodando em dispositivos locais (IoT, celulares).</li>
+            <li><strong>Quantum + IA:</strong> computação quântica acelerando treinamento de modelos.</li>
+            <li><strong>Regulamentação:</strong> EU AI Act, frameworks de governança corporativa.</li>
+        </ul>
+        <div class="tip-box">
+            <p><strong>Para profissionais de TI:</strong> Aprenda Python, entenda fundamentos de ML e experimente com LLMs locais (Ollama). A IA não substitui o profissional — amplifica quem souber usá-la.</p>
+        </div>
+    </div>
+
+    <div class="blog-nav-footer">
+        <a href="maquinas-virtuais-proxmox.html"><i class="fas fa-arrow-left"></i> Anterior: Máquinas Virtuais</a>
+        <a href="../index.html#blog"><i class="fas fa-th-large"></i> Todos os artigos</a>
+    </div>
+
+</article>
+
+<footer>
+    <div class="footer-content">
+        <h3>Alessandro Canon</h3>
+        <p>Analista de Tecnologia da Informação | Engenheiro da Computação | Desenvolvedor | Entusiasta em Segurança da Informação</p>
+        <p id="datetime" class="datetime-display"></p>
+        <p>© 2026 Alessandro Canon. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script src="../wwwroot/js/script.js"></script>
+</body>
+</html>

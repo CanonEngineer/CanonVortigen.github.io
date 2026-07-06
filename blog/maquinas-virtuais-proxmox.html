@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Máquinas Virtuais e Proxmox VE: virtualização, containers LXC, clusters HA e gestão de datacenter.">
+    <title>Máquinas Virtuais e Proxmox | Blog Técnico | Alessandro Canon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="icon" href="../wwwroot/img/canon.png">
+    <link rel="stylesheet" href="../wwwroot/css/style.css">
+    <link rel="stylesheet" href="../wwwroot/css/blog.css">
+</head>
+<body>
+
+<header class="blog-header">
+    <a href="../index.html#blog" class="blog-back"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
+    <div class="blog-hero">
+        <div class="blog-icon"><i class="fas fa-server"></i></div>
+        <h1>Máquinas Virtuais e Proxmox</h1>
+        <p class="blog-meta">
+            <span><i class="far fa-calendar"></i> Atualizado em 2026</span>
+            <span><i class="far fa-clock"></i> 22 min de leitura</span>
+            <span><i class="fas fa-tag"></i> Virtualização • Proxmox • Infraestrutura</span>
+        </p>
+    </div>
+</header>
+
+<article class="blog-article">
+
+    <div class="article-card">
+        <h2>O que é virtualização?</h2>
+        <p>
+            <strong>Virtualização</strong> permite executar múltiplas máquinas virtuais (VMs) em um
+            único servidor físico. Cada VM tem seu próprio sistema operacional, isolado das demais,
+            compartilhando apenas o hardware subjacente através de um <strong>hypervisor</strong>.
+        </p>
+        <div class="article-illustration">
+            <svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg">
+                <rect x="40" y="140" width="440" height="45" rx="8" fill="#475569" opacity="0.4" stroke="#64748b" stroke-width="2"/>
+                <text x="260" y="168" text-anchor="middle" fill="#cbd5e1" font-size="11" font-family="Inter">Servidor Físico (CPU, RAM, Disco, Rede)</text>
+                <rect x="60" y="90" width="400" height="40" rx="6" fill="#2563eb" opacity="0.25" stroke="#3b82f6"/>
+                <text x="260" y="115" text-anchor="middle" fill="#93c5fd" font-size="10" font-family="Inter">Hypervisor (Proxmox / KVM)</text>
+                <rect x="60" y="15" width="115" height="65" rx="6" fill="#10b981" opacity="0.3" stroke="#10b981"/>
+                <text x="117" y="42" text-anchor="middle" fill="#6ee7b7" font-size="9" font-family="Inter">VM 1</text>
+                <text x="117" y="58" text-anchor="middle" fill="#94a3b8" font-size="7" font-family="Inter">Linux</text>
+                <rect x="190" y="15" width="115" height="65" rx="6" fill="#7c3aed" opacity="0.3" stroke="#a855f7"/>
+                <text x="247" y="42" text-anchor="middle" fill="#c4b5fd" font-size="9" font-family="Inter">VM 2</text>
+                <text x="247" y="58" text-anchor="middle" fill="#94a3b8" font-size="7" font-family="Inter">Windows</text>
+                <rect x="320" y="15" width="115" height="65" rx="6" fill="#ea580c" opacity="0.3" stroke="#f97316"/>
+                <text x="377" y="42" text-anchor="middle" fill="#fdba74" font-size="9" font-family="Inter">LXC</text>
+                <text x="377" y="58" text-anchor="middle" fill="#94a3b8" font-size="7" font-family="Inter">Container</text>
+            </svg>
+        </div>
+        <div class="info-box">
+            <p><strong>Benefício principal:</strong> Melhor aproveitamento de hardware — um servidor que usaria 15% de capacidade pode hospedar dezenas de VMs.</p>
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>Tipos de hypervisor</h2>
+        <div class="threat-grid">
+            <div class="threat-card">
+                <div class="threat-icon blue"><i class="fas fa-layer-group"></i></div>
+                <h4>Tipo 1 (Bare-Metal)</h4>
+                <p>Instalado diretamente no hardware. Maior performance. Proxmox, VMware ESXi, Hyper-V, Xen.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon green"><i class="fas fa-window-maximize"></i></div>
+                <h4>Tipo 2 (Hosted)</h4>
+                <p>Roda sobre um SO hospedeiro. VirtualBox, VMware Workstation. Ideal para testes e labs.</p>
+            </div>
+        </div>
+        <table class="comparison-table">
+            <thead>
+                <tr><th>Característica</th><th>Tipo 1</th><th>Tipo 2</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Performance</td><td>Alta</td><td>Média</td></tr>
+                <tr><td>Uso em produção</td><td>Sim</td><td>Raramente</td></tr>
+                <tr><td>Facilidade</td><td>Média</td><td>Alta</td></tr>
+                <tr><td>Exemplo</td><td>Proxmox VE</td><td>VirtualBox</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="article-card">
+        <h2>Proxmox VE — Visão geral</h2>
+        <p>
+            <strong>Proxmox Virtual Environment (VE)</strong> é uma plataforma open-source de
+            virtualização enterprise baseada em Debian Linux. Combina <strong>KVM</strong> para VMs
+            completas e <strong>LXC</strong> para containers leves, tudo gerenciado por uma interface
+            web intuitiva.
+        </p>
+        <div class="article-illustration">
+            <svg viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg">
+                <rect x="150" y="10" width="200" height="40" rx="8" fill="#e57000" opacity="0.4" stroke="#e57000" stroke-width="2"/>
+                <text x="250" y="35" text-anchor="middle" fill="#fdba74" font-size="12" font-weight="bold" font-family="Inter">Proxmox VE Web UI</text>
+                <line x1="200" y1="50" x2="120" y2="80" stroke="#64748b" stroke-width="1.5"/>
+                <line x1="250" y1="50" x2="250" y2="80" stroke="#64748b" stroke-width="1.5"/>
+                <line x1="300" y1="50" x2="380" y2="80" stroke="#64748b" stroke-width="1.5"/>
+                <rect x="60" y="80" width="120" height="60" rx="8" fill="#2563eb" opacity="0.3" stroke="#3b82f6"/>
+                <text x="120" y="105" text-anchor="middle" fill="#93c5fd" font-size="10" font-family="Inter">KVM / QEMU</text>
+                <text x="120" y="125" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="Inter">Máquinas Virtuais</text>
+                <rect x="190" y="80" width="120" height="60" rx="8" fill="#10b981" opacity="0.3" stroke="#10b981"/>
+                <text x="250" y="105" text-anchor="middle" fill="#6ee7b7" font-size="10" font-family="Inter">LXC</text>
+                <text x="250" y="125" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="Inter">Containers</text>
+                <rect x="320" y="80" width="120" height="60" rx="8" fill="#7c3aed" opacity="0.3" stroke="#a855f7"/>
+                <text x="380" y="105" text-anchor="middle" fill="#c4b5fd" font-size="10" font-family="Inter">Ceph / ZFS</text>
+                <text x="380" y="125" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="Inter">Storage</text>
+            </svg>
+        </div>
+
+        <h3>Principais recursos do Proxmox</h3>
+        <ul>
+            <li><strong>Interface Web:</strong> gestão completa via browser na porta 8006 (HTTPS).</li>
+            <li><strong>KVM/QEMU:</strong> VMs com qualquer SO — Linux, Windows, BSD.</li>
+            <li><strong>LXC Containers:</strong> containers Linux nativos, mais leves que VMs.</li>
+            <li><strong>Cluster HA:</strong> múltiplos nodes com failover automático.</li>
+            <li><strong>Live Migration:</strong> mover VMs entre hosts sem downtime.</li>
+            <li><strong>Backup/Restore:</strong> agendamento de backups com deduplicação.</li>
+            <li><strong>Firewall integrado:</strong> regras por VM/container.</li>
+            <li><strong>ZFS e Ceph:</strong> storage avançado com snapshots e replicação.</li>
+        </ul>
+    </div>
+
+    <div class="article-card">
+        <h2>VM vs Container (LXC) — Quando usar cada um?</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr><th>Aspecto</th><th>VM (KVM)</th><th>Container (LXC)</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Isolamento</td><td>Completo (SO próprio)</td><td>Compartilha kernel do host</td></tr>
+                <tr><td>Consumo de RAM</td><td>Alto (512MB–4GB+)</td><td>Baixo (32MB–256MB)</td></tr>
+                <tr><td>Boot time</td><td>30s–2min</td><td>1–5 segundos</td></tr>
+                <tr><td>SO suportado</td><td>Qualquer</td><td>Apenas Linux</td></tr>
+                <tr><td>Uso ideal</td><td>Windows, apps legados, isolamento total</td><td>Microserviços, web servers, bancos</td></tr>
+            </tbody>
+        </table>
+        <div class="tip-box">
+            <p><strong>Regra prática:</strong> Use LXC para serviços Linux leves (Nginx, PostgreSQL, Redis). Use VM quando precisar de Windows ou isolamento total do kernel.</p>
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>Instalação e configuração do Proxmox</h2>
+        <h3>Requisitos mínimos</h3>
+        <ul>
+            <li>CPU com virtualização (Intel VT-x / AMD-V) habilitada na BIOS.</li>
+            <li>64-bit, 2+ cores (recomendado 4+).</li>
+            <li>RAM: mínimo 4GB (recomendado 16GB+ para produção).</li>
+            <li>Disco: 32GB+ (SSD fortemente recomendado).</li>
+            <li>Rede: 1+ interfaces (2 para bond/redundância).</li>
+        </ul>
+
+        <div class="code-block">
+<span class="comment"># Após instalar Proxmox VE, acessar via browser:</span>
+https://IP-DO-SERVIDOR:8006
+
+<span class="comment"># Login padrão:</span>
+Usuário: root
+Senha: (definida na instalação)
+Realm: Linux PAM
+
+<span class="comment"># Criar VM via CLI (qm):</span>
+qm create 100 --name ubuntu-server --memory 2048 --cores 2 \
+  --net0 virtio,bridge=vmbr0 --scsi0 local-lvm:20
+
+<span class="comment"># Criar container LXC:</span>
+pct create 101 local:vztmpl/ubuntu-22.04.tar.zst \
+  --hostname web-server --memory 512 --cores 1 \
+  --net0 name=eth0,bridge=vmbr0,ip=dhcp
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>Rede no Proxmox</h2>
+        <p>O Proxmox usa <strong>bridges Linux</strong> para conectar VMs à rede física:</p>
+        <div class="article-illustration">
+            <div class="diagram-flow">
+                <div class="diagram-step"><i class="fas fa-ethernet"></i><br>NIC Física</div>
+                <span class="diagram-arrow">→</span>
+                <div class="diagram-step"><i class="fas fa-bridge"></i><br>vmbr0</div>
+                <span class="diagram-arrow">→</span>
+                <div class="diagram-step"><i class="fas fa-server"></i><br>VMs / LXC</div>
+            </div>
+        </div>
+        <ul>
+            <li><strong>vmbr0:</strong> bridge padrão — VMs ficam na mesma rede que o host.</li>
+            <li><strong>VLAN aware:</strong> bridge pode transportar múltiplas VLANs (802.1Q).</li>
+            <li><strong>SDN (Software Defined Networking):</strong> redes virtuais isoladas entre VMs.</li>
+            <li><strong>Bonding:</strong> agregar múltiplas NICs para redundância (LACP).</li>
+        </ul>
+    </div>
+
+    <div class="article-card">
+        <h2>Storage: ZFS e Ceph</h2>
+        <div class="threat-grid">
+            <div class="threat-card">
+                <div class="threat-icon blue"><i class="fas fa-hard-drive"></i></div>
+                <h4>local-lvm (LVM)</h4>
+                <p>Storage padrão em disco local. Simples, rápido. Sem redundância entre nodes.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon green"><i class="fas fa-rotate"></i></div>
+                <h4>ZFS</h4>
+                <p>Filesystem avançado com snapshots, compressão, deduplicação e integridade de dados (checksums).</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon purple"><i class="fas fa-database"></i></div>
+                <h4>Ceph</h4>
+                <p>Storage distribuído para clusters. Replica dados entre nodes. Escalável para petabytes.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon orange"><i class="fas fa-network-wired"></i></div>
+                <h4>NFS / iSCSI</h4>
+                <p>Storage compartilhado via rede. Útil para live migration e backups centralizados.</p>
+            </div>
+        </div>
+        <div class="code-block">
+<span class="comment"># Snapshot ZFS de uma VM (via Proxmox)</span>
+qm snapshot 100 backup-antes-update --description <span class="string">"Antes do apt upgrade"</span>
+
+<span class="comment"># Rollback se algo der errado:</span>
+qm rollback 100 backup-antes-update
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>Cluster e Alta Disponibilidade (HA)</h2>
+        <p>
+            Com <strong>3+ nodes</strong>, o Proxmox forma um cluster usando <strong>Corosync</strong>
+            para comunicação e <strong>quorum</strong> para decisões. Se um node cair, as VMs
+            marcadas como HA reiniciam automaticamente em outro node.
+        </p>
+        <div class="article-illustration">
+            <svg viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg">
+                <rect x="30" y="30" width="100" height="70" rx="8" fill="#2563eb" opacity="0.3" stroke="#3b82f6"/>
+                <text x="80" y="60" text-anchor="middle" fill="#93c5fd" font-size="9" font-family="Inter">Node 1</text>
+                <text x="80" y="78" text-anchor="middle" fill="#94a3b8" font-size="7" font-family="Inter">VM-A, VM-B</text>
+                <rect x="190" y="30" width="100" height="70" rx="8" fill="#2563eb" opacity="0.3" stroke="#3b82f6"/>
+                <text x="240" y="60" text-anchor="middle" fill="#93c5fd" font-size="9" font-family="Inter">Node 2</text>
+                <text x="240" y="78" text-anchor="middle" fill="#94a3b8" font-size="7" font-family="Inter">VM-C, VM-D</text>
+                <rect x="350" y="30" width="100" height="70" rx="8" fill="#ef4444" opacity="0.3" stroke="#ef4444" stroke-dasharray="4"/>
+                <text x="400" y="60" text-anchor="middle" fill="#fca5a5" font-size="9" font-family="Inter">Node 3</text>
+                <text x="400" y="78" text-anchor="middle" fill="#ef4444" font-size="7" font-family="Inter">OFFLINE</text>
+                <line x1="130" y1="65" x2="190" y2="65" stroke="#10b981" stroke-width="2"/>
+                <line x1="290" y1="65" x2="350" y2="65" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4"/>
+                <text x="240" y="125" text-anchor="middle" fill="#64748b" font-size="9" font-family="Inter">VMs do Node 3 migradas automaticamente para Node 1 ou 2</text>
+            </svg>
+        </div>
+        <div class="code-block">
+<span class="comment"># Criar cluster (no primeiro node):</span>
+pvecm create cluster-homelab
+
+<span class="comment"># Adicionar nodes ao cluster:</span>
+pvecm add IP-DO-NODE-1
+
+<span class="comment"># Habilitar HA para uma VM:</span>
+ha-manager add vm:100 --state started --max_restart 3
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>Backup e recuperação</h2>
+        <ul>
+            <li><strong>vzdump:</strong> ferramenta nativa de backup para VMs e containers.</li>
+            <li><strong>Modos:</strong> snapshot (sem downtime), suspend ou stop.</li>
+            <li><strong>Formatos:</strong> tar.gz, zstd (compressão rápida), PBS (Proxmox Backup Server).</li>
+            <li><strong>Agendamento:</strong> configure jobs diários/semanais na interface web.</li>
+            <li><strong>Proxmox Backup Server (PBS):</strong> solução dedicada com deduplicação global.</li>
+        </ul>
+        <div class="tip-box">
+            <p><strong>Regra 3-2-1:</strong> 3 cópias dos dados, em 2 mídias diferentes, com 1 cópia offsite. Teste restaurações regularmente!</p>
+        </div>
+    </div>
+
+    <div class="blog-nav-footer">
+        <a href="firewall.html"><i class="fas fa-arrow-left"></i> Anterior: Firewall</a>
+        <a href="inteligencia-artificial.html">Próximo: Inteligência Artificial <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</article>
+
+<footer>
+    <div class="footer-content">
+        <h3>Alessandro Canon</h3>
+        <p>Analista de Tecnologia da Informação | Engenheiro da Computação | Desenvolvedor | Entusiasta em Segurança da Informação</p>
+        <p id="datetime" class="datetime-display"></p>
+        <p>© 2026 Alessandro Canon. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script src="../wwwroot/js/script.js"></script>
+</body>
+</html>

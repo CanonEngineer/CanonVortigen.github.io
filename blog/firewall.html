@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Firewall: tipos, regras, políticas, NGFW, WAF e proteção de perímetro em profundidade.">
+    <title>Firewall | Blog Técnico | Alessandro Canon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="icon" href="../wwwroot/img/canon.png">
+    <link rel="stylesheet" href="../wwwroot/css/style.css">
+    <link rel="stylesheet" href="../wwwroot/css/blog.css">
+</head>
+<body>
+
+<header class="blog-header">
+    <a href="../index.html#blog" class="blog-back"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
+    <div class="blog-hero">
+        <div class="blog-icon"><i class="fas fa-fire-flame-curved"></i></div>
+        <h1>Firewall</h1>
+        <p class="blog-meta">
+            <span><i class="far fa-calendar"></i> Atualizado em 2026</span>
+            <span><i class="far fa-clock"></i> 20 min de leitura</span>
+            <span><i class="fas fa-tag"></i> Firewall • Segurança • Redes</span>
+        </p>
+    </div>
+</header>
+
+<article class="blog-article">
+
+    <div class="article-card">
+        <h2>O que é um Firewall?</h2>
+        <p>
+            Um <strong>firewall</strong> (parede de fogo) é um dispositivo ou software que monitora
+            e controla o tráfego de rede com base em regras de segurança predefinidas. Funciona como
+            um <strong>porteiro digital</strong> — decide o que entra, o que sai e o que é bloqueado.
+        </p>
+        <div class="article-illustration">
+            <svg viewBox="0 0 520 180" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="50" width="100" height="80" rx="10" fill="#10b981" opacity="0.25" stroke="#10b981"/>
+                <text x="70" y="85" text-anchor="middle" fill="#6ee7b7" font-size="10" font-family="Inter">Internet</text>
+                <text x="70" y="105" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="Inter">(Não confiável)</text>
+                <rect x="210" y="35" width="100" height="110" rx="10" fill="#ef4444" opacity="0.35" stroke="#ef4444" stroke-width="2"/>
+                <text x="260" y="75" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="bold" font-family="Inter">FIREWALL</text>
+                <text x="260" y="95" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="Inter">Filtra tráfego</text>
+                <text x="260" y="115" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="Inter">Aplica regras</text>
+                <rect x="400" y="50" width="100" height="80" rx="10" fill="#2563eb" opacity="0.25" stroke="#3b82f6"/>
+                <text x="450" y="85" text-anchor="middle" fill="#93c5fd" font-size="10" font-family="Inter">Rede Interna</text>
+                <text x="450" y="105" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="Inter">(Confiável)</text>
+                <line x1="120" y1="90" x2="210" y2="90" stroke="#64748b" stroke-width="2"/>
+                <line x1="310" y1="90" x2="400" y2="90" stroke="#64748b" stroke-width="2"/>
+                <text x="165" y="80" fill="#ef4444" font-size="8" font-family="Inter">Bloqueado</text>
+                <text x="355" y="80" fill="#10b981" font-size="8" font-family="Inter">Permitido</text>
+                <text x="260" y="165" text-anchor="middle" fill="#64748b" font-size="9" font-family="Inter">Firewall como barreira entre zonas de confiança</text>
+            </svg>
+        </div>
+        <div class="info-box">
+            <p><strong>Conceito-chave:</strong> O firewall opera nas camadas 3 (Rede) a 7 (Aplicação) do modelo OSI, dependendo do tipo.</p>
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>Tipos de Firewall</h2>
+        <div class="threat-grid">
+            <div class="threat-card">
+                <div class="threat-icon blue"><i class="fas fa-filter"></i></div>
+                <h4>Packet Filtering</h4>
+                <p>Analisa cabeçalhos IP (origem, destino, porta, protocolo). Rápido, mas não vê conteúdo. Camada 3–4.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon green"><i class="fas fa-door-open"></i></div>
+                <h4>Stateful (Com Estado)</h4>
+                <p>Rastreia conexões ativas. Sabe que um pacote de retorno pertence a uma sessão legítima. Padrão atual.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon purple"><i class="fas fa-magnifying-glass"></i></div>
+                <h4>Application Layer (Proxy)</h4>
+                <p>Inspeciona conteúdo das aplicações (HTTP, FTP, DNS). Mais lento, mas muito mais seguro. Camada 7.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon orange"><i class="fas fa-shield-halved"></i></div>
+                <h4>NGFW (Next-Gen)</h4>
+                <p>Combina firewall tradicional + IPS + filtro de aplicações + antivírus + SSL inspection. Palo Alto, Fortinet.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon red"><i class="fas fa-globe"></i></div>
+                <h4>WAF (Web App Firewall)</h4>
+                <p>Protege aplicações web contra SQL Injection, XSS e bots. Cloudflare, AWS WAF, ModSecurity.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon cyan"><i class="fas fa-laptop"></i></div>
+                <h4>Host-based (HFW)</h4>
+                <p>Software instalado na máquina (Windows Firewall, iptables/nftables no Linux). Protege o host individual.</p>
+            </div>
+        </div>
+
+        <table class="comparison-table">
+            <thead>
+                <tr><th>Tipo</th><th>Camada OSI</th><th>Velocidade</th><th>Segurança</th><th>Uso típico</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Packet Filtering</td><td>3–4</td><td>Alta</td><td>Básica</td><td>Roteadores simples</td></tr>
+                <tr><td>Stateful</td><td>3–4</td><td>Alta</td><td>Média</td><td>Perímetro corporativo</td></tr>
+                <tr><td>Application Proxy</td><td>7</td><td>Média</td><td>Alta</td><td>Proxy reverso</td></tr>
+                <tr><td>NGFW</td><td>3–7</td><td>Alta</td><td>Muito alta</td><td>Empresas, datacenters</td></tr>
+                <tr><td>WAF</td><td>7</td><td>Alta</td><td>Alta (web)</td><td>Sites e APIs públicas</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="article-card">
+        <h2>Regras e políticas de firewall</h2>
+        <p>Toda configuração de firewall segue uma <strong>política de segurança</strong>. A regra de ouro é:</p>
+        <div class="info-box">
+            <p><strong>Deny by Default</strong> — bloqueie tudo por padrão e libere apenas o tráfego explicitamente necessário (princípio do menor privilégio).</p>
+        </div>
+
+        <div class="article-illustration">
+            <p style="margin-bottom:12px;color:var(--text-secondary);font-size:0.9rem;">Ordem de processamento das regras</p>
+            <div class="diagram-flow">
+                <div class="diagram-step"><i class="fas fa-arrow-down"></i><br>Pacote chega</div>
+                <span class="diagram-arrow">→</span>
+                <div class="diagram-step"><i class="fas fa-list-ol"></i><br>Regra 1..N</div>
+                <span class="diagram-arrow">→</span>
+                <div class="diagram-step"><i class="fas fa-check"></i><br>Match?</div>
+                <span class="diagram-arrow">→</span>
+                <div class="diagram-step"><i class="fas fa-ban"></i><br>Deny padrão</div>
+            </div>
+        </div>
+
+        <h3>Componentes de uma regra</h3>
+        <ul>
+            <li><strong>Origem (Source):</strong> IP ou rede de onde vem o tráfego.</li>
+            <li><strong>Destino (Destination):</strong> IP ou rede para onde vai.</li>
+            <li><strong>Porta/Protocolo:</strong> TCP/UDP, número da porta (80, 443, 22...).</li>
+            <li><strong>Ação:</strong> ALLOW (permitir), DENY (bloquear), LOG (registrar).</li>
+            <li><strong>Direção:</strong> Inbound (entrada), Outbound (saída).</li>
+        </ul>
+
+        <div class="code-block">
+<span class="comment"># Exemplo: iptables (Linux)</span>
+<span class="comment"># Bloquear tudo por padrão</span>
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+
+<span class="comment"># Permitir SSH apenas da rede admin</span>
+iptables -A INPUT -p tcp -s 192.168.10.0/24 --dport 22 -j ACCEPT
+
+<span class="comment"># Permitir HTTP/HTTPS de qualquer origem</span>
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+
+<span class="comment"># Permitir tráfego de retorno (established)</span>
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>Zonas de segurança (Security Zones)</h2>
+        <p>Firewalls modernos organizam interfaces em <strong>zonas</strong> com níveis de confiança diferentes:</p>
+        <div class="article-illustration">
+            <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+                <rect x="180" y="10" width="140" height="50" rx="8" fill="#ef4444" opacity="0.3" stroke="#ef4444"/>
+                <text x="250" y="40" text-anchor="middle" fill="#fca5a5" font-size="10" font-family="Inter">WAN (Internet)</text>
+                <rect x="180" y="80" width="140" height="50" rx="8" fill="#eab308" opacity="0.3" stroke="#eab308"/>
+                <text x="250" y="110" text-anchor="middle" fill="#fde047" font-size="10" font-family="Inter">DMZ</text>
+                <rect x="180" y="150" width="140" height="50" rx="8" fill="#10b981" opacity="0.3" stroke="#10b981"/>
+                <text x="250" y="180" text-anchor="middle" fill="#6ee7b7" font-size="10" font-family="Inter">LAN (Interna)</text>
+                <text x="60" y="110" fill="#94a3b8" font-size="9" font-family="Inter">Regras entre zonas</text>
+                <line x1="130" y1="35" x2="180" y2="35" stroke="#64748b" stroke-width="1"/>
+                <line x1="130" y1="105" x2="180" y2="105" stroke="#64748b" stroke-width="1"/>
+                <line x1="130" y1="175" x2="180" y2="175" stroke="#64748b" stroke-width="1"/>
+                <text x="400" y="40" fill="#94a3b8" font-size="8" font-family="Inter">Servidores web públicos</text>
+                <text x="400" y="110" fill="#94a3b8" font-size="8" font-family="Inter">E-mail, DNS, VPN</text>
+                <text x="400" y="180" fill="#94a3b8" font-size="8" font-family="Inter">Estações, AD, ERP</text>
+            </svg>
+        </div>
+        <ul>
+            <li><strong>WAN:</strong> internet — zona não confiável, bloqueio máximo.</li>
+            <li><strong>DMZ:</strong> servidores acessíveis externamente, isolados da LAN.</li>
+            <li><strong>LAN:</strong> rede interna — acesso restrito vindo de WAN/DMZ.</li>
+            <li><strong>VPN Zone:</strong> usuários remotos autenticados com regras específicas.</li>
+        </ul>
+    </div>
+
+    <div class="article-card">
+        <h2>Portas essenciais e quando liberar</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr><th>Porta</th><th>Protocolo</th><th>Serviço</th><th>Recomendação</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>22</td><td>TCP</td><td>SSH</td><td>Restringir a IPs admin, usar chaves</td></tr>
+                <tr><td>80</td><td>TCP</td><td>HTTP</td><td>Redirecionar para 443 (HTTPS)</td></tr>
+                <tr><td>443</td><td>TCP</td><td>HTTPS</td><td>Liberar para serviços web públicos</td></tr>
+                <tr><td>53</td><td>UDP/TCP</td><td>DNS</td><td>Apenas para servidores DNS internos</td></tr>
+                <tr><td>3389</td><td>TCP</td><td>RDP</td><td>Nunca expor à internet, usar VPN</td></tr>
+                <tr><td>3306</td><td>TCP</td><td>MySQL</td><td>Apenas rede interna/DMZ</td></tr>
+                <tr><td>5432</td><td>TCP</td><td>PostgreSQL</td><td>Apenas rede interna</td></tr>
+            </tbody>
+        </table>
+        <div class="tip-box">
+            <p><strong>Dica:</strong> Use o princípio da menor superfície de ataque — feche todas as portas desnecessárias e documente cada exceção.</p>
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>Ferramentas populares</h2>
+        <div class="threat-grid">
+            <div class="threat-card">
+                <div class="threat-icon orange"><i class="fas fa-shield"></i></div>
+                <h4>pfSense / OPNsense</h4>
+                <p>Firewalls open-source baseados em FreeBSD. Muito usados em PMEs e labs. Interface web completa.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon blue"><i class="fas fa-fire"></i></div>
+                <h4>Fortinet FortiGate</h4>
+                <p>NGFW líder de mercado. UTM completo com VPN, IPS, antivírus e SD-WAN integrados.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon green"><i class="fas fa-lock"></i></div>
+                <h4>Palo Alto Networks</h4>
+                <p>NGFW enterprise com App-ID, identificação de aplicações independente de porta.</p>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon purple"><i class="fas fa-terminal"></i></div>
+                <h4>iptables / nftables</h4>
+                <p>Firewall nativo do Linux. Poderoso, configurável via CLI. Base de muitas soluções.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="blog-nav-footer">
+        <a href="python-no-backend.html"><i class="fas fa-arrow-left"></i> Anterior: Python</a>
+        <a href="maquinas-virtuais-proxmox.html">Próximo: Máquinas Virtuais <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</article>
+
+<footer>
+    <div class="footer-content">
+        <h3>Alessandro Canon</h3>
+        <p>Analista de Tecnologia da Informação | Engenheiro da Computação | Desenvolvedor | Entusiasta em Segurança da Informação</p>
+        <p id="datetime" class="datetime-display"></p>
+        <p>© 2026 Alessandro Canon. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script src="../wwwroot/js/script.js"></script>
+</body>
+</html>
