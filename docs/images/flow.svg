@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="220" viewBox="0 0 900 220">
+<rect width="100%" height="100%" fill="#0f172a"/>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#38bdf8"/></marker></defs>
+<text x="24" y="36" fill="#94a3b8" font-family="Segoe UI, Arial" font-size="16">Fluxo do projeto</text>
+<rect x="30" y="80" width="140" height="64" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+<text x="46" y="110" fill="#e2e8f0" font-family="Segoe UI, Arial" font-size="13" font-weight="700">Visitante</text>
+<line x1="170" y1="112" x2="200" y2="112" stroke="#38bdf8" stroke-width="2" marker-end="url(#a)"/>
+<rect x="200" y="80" width="140" height="64" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+<text x="216" y="110" fill="#e2e8f0" font-family="Segoe UI, Arial" font-size="13" font-weight="700">Portfolio</text>
+<line x1="340" y1="112" x2="370" y2="112" stroke="#38bdf8" stroke-width="2" marker-end="url(#a)"/>
+<rect x="370" y="80" width="140" height="64" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+<text x="386" y="110" fill="#e2e8f0" font-family="Segoe UI, Arial" font-size="13" font-weight="700">Projetos</text>
+<line x1="510" y1="112" x2="540" y2="112" stroke="#38bdf8" stroke-width="2" marker-end="url(#a)"/>
+<rect x="540" y="80" width="140" height="64" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+<text x="556" y="110" fill="#e2e8f0" font-family="Segoe UI, Arial" font-size="13" font-weight="700">Blog</text>
+<line x1="680" y1="112" x2="710" y2="112" stroke="#38bdf8" stroke-width="2" marker-end="url(#a)"/>
+<rect x="710" y="80" width="140" height="64" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+<text x="726" y="110" fill="#e2e8f0" font-family="Segoe UI, Arial" font-size="13" font-weight="700">Contato</text>
+</svg>

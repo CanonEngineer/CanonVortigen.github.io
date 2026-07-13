@@ -1,133 +1,146 @@
-# 🌌 CanonEngineer.github.io
-
 <div align="center">
 
-# Alessandro Canon
+![Banner](docs/images/banner.svg)
 
-### Network Analyst • Developer • Cybersecurity Enthusiast
+# CanonEngineer.github.io
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Online-blue?style=for-the-badge&logo=github)](https://canonengineer.github.io)
-[![GitHub](https://img.shields.io/badge/GitHub-Profile-black?style=for-the-badge&logo=github)](https://github.com/CanonEngineer)
-[![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)](https://canonvortigen.github.io)
+### Meu currículo profissional e vitrine de projetos no GitHub Pages
 
-<p>
-Building innovative solutions in networking, automation, and cybersecurity.
-</p>
+<img src="https://img.shields.io/badge/GitHub_Pages-Live-22c55e?style=for-the-badge&logo=githubpages&logoColor=white" alt="Pages"/>
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML"/>
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JS"/>
+
+[Sobre](#-sobre) ·
+[Features](#-features) ·
+[Arquitetura](#-arquitetura--fluxo) ·
+[Stack](#-stack) ·
+[Estrutura](#-estrutura) ·
+[Setup](#-como-rodar) ·
+[Melhorias](#-melhorias-sugeridas) ·
+[Autor](#-autor)
 
 </div>
 
 ---
 
-## 🚀 About the Project
+## 📌 Sobre
 
-**CanonEngineer.github.io** is my personal portfolio and professional showcase, developed to centralize my projects, technical experiences, and studies in:
+Site pessoal do **CanonEngineer** hospedado em GitHub Pages. Centraliza apresentação profissional, links de projetos, blog e ponto de entrada para o restante do ecossistema (incluindo a [Tree of Knowledge](https://canonengineer.github.io/TreeofKnowledge/)).
 
-* 🌐 Computer Networks
-* 🔒 Cybersecurity
-* 💻 Software Development
-* ⚙️ Automation and Monitoring Solutions
-* 📊 Infrastructure and Systems Management
+<div align="center">
 
-The website was designed with a focus on performance, modern design, and an intuitive user experience.
+![Fluxo](docs/images/flow.svg)
+
+</div>
 
 ---
 
 ## ✨ Features
 
-* Professional portfolio presentation
-* Project showcase
-* Responsive design
-* Modern and clean interface
-* Direct access to GitHub repositories
-* Continuous updates with new projects and studies
+| # | Capacidade |
+|---|------------|
+| 1 | Landing de portfólio com identidade visual própria |
+| 2 | Seção de projetos e experiências |
+| 3 | Blog estático em `blog/` |
+| 4 | Assets em `wwwroot/` prontos para Pages |
+| 5 | Deploy contínuo via push em `main` |
 
 ---
 
-## 🛠️ Technologies
+## 🏗️ Arquitetura / Fluxo
 
-| Technology   | Purpose         |
-| ------------ | --------------- |
-| HTML5        | Structure       |
-| CSS3         | Styling         |
-| JavaScript   | Interactivity   |
-| GitHub Pages | Hosting         |
-| Git          | Version Control |
+```mermaid
+flowchart TB
+    U[Visitante] --> I[index.html]
+    I --> W[wwwroot assets]
+    I --> P[Projetos / links]
+    I --> B[blog]
+    P --> T[Tree of Knowledge]
+    P --> G[Repos GitHub]
+```
 
 ---
 
-## 📂 Project Structure
+## 🛠️ Stack
+
+| Tecnologia | Papel |
+|------------|-------|
+| HTML5 | Estrutura |
+| CSS3 | Layout e visual |
+| JavaScript | Interatividade |
+| GitHub Pages | Hospedagem |
+
+---
+
+## 📂 Estrutura
 
 ```text
-CanonVortigen.github.io/
-│
+CanonEngineer.github.io/
 ├── index.html
-├── assets/
-│   ├── css/
-│   ├── js/
-│   └── images/
-├── projects/
+├── wwwroot/          # assets públicos
+├── blog/             # posts
+├── scripts/          # utilitários
 └── README.md
 ```
 
 ---
 
-## 🌍 Website
+## 🚀 Como rodar
 
-Access the live website:
+Clone e abra localmente:
 
-👉 **https://canonengineer.github.io**
-
----
-
-## 📸 Preview
-
-```text
-Add screenshots of your website here:
-docs/images/home.png
-docs/images/projects.png
-docs/images/contact.png
+```bash
+git clone https://github.com/CanonEngineer/CanonEngineer.github.io.git
+cd CanonEngineer.github.io
+# abra index.html no navegador ou use um server estático
+npx serve .
 ```
 
----
-
-## 🎯 Objectives
-
-This project aims to:
-
-* Showcase my professional profile.
-* Present my development and infrastructure projects.
-* Share knowledge and technical studies.
-* Serve as a central hub for my professional activities.
+Site ao vivo: **https://canonengineer.github.io**
 
 ---
 
-## 📈 Future Improvements
+## ▶️ Uso
 
-* [ ] Blog section
-* [ ] Dark/Light mode
-* [ ] Project filtering system
-* [ ] Multi-language support
-* [ ] Interactive dashboards
-* [ ] Integration with GitHub API
+Navegue pelo portfólio, acesse o blog e use os links para os repositórios e para a Árvore do Conhecimento.
 
 ---
 
-## 👨‍💻 Author
+## 🌳 Tree of Knowledge
 
-**Alessandro Canon**
+Este projeto está mapeado na árvore interativa:
 
-Network Analyst | Developer | Cybersecurity Enthusiast
+<p>
+  <a href="https://canonengineer.github.io/TreeofKnowledge/index.html?tree=canon-engineer-github-io">
+    <img src="https://img.shields.io/badge/Abrir_na_Árvore-Tree_of_Knowledge-38bdf8?style=for-the-badge&labelColor=0c2344" alt="Tree of Knowledge"/>
+  </a>
+</p>
 
-* GitHub: https://github.com/CanonEngineer
-* Portfolio: https://canonengineer.github.io
+---
+
+## 📈 Melhorias sugeridas
+
+1. Dark/Light mode com preferência salva
+2. Filtro de projetos por stack
+3. i18n PT/EN
+4. Mais posts técnicos no blog
+
+---
+
+## 👨‍💻 Autor
+
+**Alessandro Canon (CanonEngineer)**  
+Network Analyst · Developer · Cybersecurity Enthusiast
+
+- GitHub: [https://github.com/CanonEngineer](https://github.com/CanonEngineer)
+- Portfolio: [https://canonengineer.github.io](https://canonengineer.github.io)
+- Tree of Knowledge: [https://canonengineer.github.io/TreeofKnowledge/](https://canonengineer.github.io/TreeofKnowledge/)
 
 ---
 
 <div align="center">
 
-### ⭐ If you like this project, consider giving it a star.
-
-**"Technology is not just about building systems, but creating solutions that make an impact."**
+⭐ Se este projeto te ajudou, deixe uma estrela!
 
 </div>
-
