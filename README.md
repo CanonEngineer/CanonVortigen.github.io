@@ -1,8 +1,10 @@
+> **Mobile / UTF-8:** imagens com `width: 100%` (sem scroll horizontal). Arquivo gravado em UTF-8 para acentos corretos em qualquer dispositivo.
+
 <div align="center">
 
-![Banner](docs/images/banner.svg)
-
-# CanonEngineer.github.io
+<p align="center">
+  <img src="docs/images/banner.svg" alt="Banner" width="100%" style="max-width:100%;height:auto;display:block;" />
+</p># CanonEngineer.github.io
 
 ### Meu currículo profissional e vitrine de projetos no GitHub Pages
 
@@ -30,9 +32,9 @@ Site pessoal do **CanonEngineer** hospedado em GitHub Pages. Centraliza apresent
 
 <div align="center">
 
-![Fluxo](docs/images/flow.svg)
-
-</div>
+<p align="center">
+  <img src="docs/images/flow.svg" alt="Fluxo" width="100%" style="max-width:100%;height:auto;display:block;" />
+</p></div>
 
 ---
 
